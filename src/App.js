@@ -12,37 +12,38 @@ let fakeServerData = {
     playlists: [
       {
         name: 'My favorites',
-        songs: [{name: 'Beat It', duration: 1345},
-        {name: 'Cannelloni Makaroni', duration: 1245},
-        {name: 'Rosa helikoptor', duration: 5645}
-      ]
-    },
-    {
-      name: 'Discover',
-      songs: [
-        {name: 'GOD', duration: 1645},
-        {name: 'ETHOS', duration: 2945},
-        {name: 'LIL B', duration: 1545}
-      ]
-    },
-    {
-      name: 'Rap',
-      songs: [
-        {name: 'Lose it',duration: 4345},
-        {name: 'HUMBLE', duration: 4105},
-        {name: 'Black and Yellow', duration: 1305}
-      ]
-    },
-    {
-      name: 'Rock',
-      songs: [
-        {name:'Back in Black', duration: 2300},
-        {name:'Hell\'s Bells', duration: 2303},
-        {name:'Don\'t Stop', duration: 9000}
-      ]
-    }
-  ]
-},
+        songs: [
+          {name: 'Beat It', duration: 1345},
+          {name: 'Cannelloni Makaroni', duration: 1245},
+          {name: 'Rosa helikoptor', duration: 5645}
+        ]
+      },
+      {
+        name: 'Discover',
+        songs: [
+          {name: 'GOD', duration: 1645},
+          {name: 'ETHOS', duration: 2945},
+          {name: 'LIL B', duration: 1545}
+        ]
+      },
+      {
+        name: 'Rap',
+        songs: [
+          {name: 'Lose it',duration: 4345},
+          {name: 'HUMBLE', duration: 4105},
+          {name: 'Black and Yellow', duration: 1305}
+        ]
+      },
+      {
+        name: 'Rock',
+        songs: [
+          {name:'Back in Black', duration: 2300},
+          {name:'Hell\'s Bells', duration: 2303},
+          {name:'Don\'t Stop', duration: 9000}
+        ]
+      }
+    ]
+  },
 }
 class PlaylistCounter extends Component
 {
@@ -92,11 +93,11 @@ class Playlist extends Component
     return(
       <div style ={{...defaultStyle, width: "25%", display: "inline-block"}}>
         <img/>
-        <h3>Playlist Name</h3>
+        <h3>{this.props.playlist.name}</h3>
         <ul>
-          <li>Song 1</li>
-          <li>Song 2</li>
-          <li>Song 3</li>
+          {this.props.playlist.songs.map(song =>
+          <li>{song.name}</li>
+          )}
         </ul>
       </div>
     )
@@ -129,9 +130,13 @@ render() {
           <PlaylistCounter playlists = {this.state.serverData.user.playlists} />
           <HoursCounter playlists = {this.state.serverData.user.playlists} />
           <Filter/>
-          <Playlist/>
-          <Playlist/>
-          <Playlist/>
+          {
+            this.state.serverData.user.playlists.map(playlist =>
+              <Playlist playlist={playlist}/>
+            )
+          }
+
+
         </div> : <h1 style ={defaultStyle}>Loading...</h1>
       }
     </div>
