@@ -1,5 +1,6 @@
 html, body {
   background: #29c629;
+  font-family: helvetica;
 }
 
 body {
@@ -9,6 +10,11 @@ body {
 
 .App{
   background: #00800080;
+  border-radius: 40px;
+  box-shadow: 0 0 75px 12px;
+
+border: 4px solid #38b910;
+
 }
 
 img {
@@ -37,7 +43,7 @@ img {
 
   ul li:before {
     content: ".";
-color: #53cc46;
+color: black;
 font-size: 20px;
 font-weight: bold;
 position: relative;

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import  queryString from 'query-string';
+import Image from '../src/backgroundgrey2.png'; // Import using relative path
+
+
+
+let backgroundImage = `url(${Image})`;
 
 let defaultStyle = {
-  color: '#fff',
-  'font-family': 'helvetica'
+  color: 'rgb(188, 255, 153)'
 }
 
 let fakeServerData = {
@@ -109,11 +113,12 @@ class Playlist extends Component {
                        width: "35%",
                        minWidth: '200px',
                        display: "inline-block",
-                       background: '#2f2525e6',
+                       background: '#36e70080',
                        padding: '26px',
                        margin: 'auto auto 9px auto',
-                       border: '4px solid #39393980',
-                       borderRadius: '21px'
+                       border: '1px solid rgba(57, 57, 57, 0.5)',
+                       borderRadius: '25px',
+                       boxShadow: '16px 3px 18px 2px #3e3e3e4d',
 
                    }}>
         <img src={playlist.imageUrl} style={{}}/>
