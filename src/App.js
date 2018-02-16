@@ -49,7 +49,10 @@ let fakeServerData = {
 class PlaylistCounter extends Component {
   render(){
     return (
-      <div style={{width: '40%', display: 'inline-block', textAlign :'center'}}>
+      <div style={{width: '40%',
+                   display: 'inline-block',
+                   textAlign :'center'
+            }}>
         <h2 style={defaultStyle}>
           {this.props.playlists.length} Playlist</h2>
       </div>
@@ -67,7 +70,10 @@ class HoursCounter extends Component {
     }, 0)
     return (
 
-      <div style={{width: '40%', display: 'inline-block', textAlign: 'right'}}>
+      <div style={{width: '40%',
+                  display: 'inline-block',
+                  textAlign: 'right'
+            }}>
         <h2 style={defaultStyle}>
           {Math.round(totalDuration/60)} Hours</h2>
       </div>
@@ -77,13 +83,18 @@ class HoursCounter extends Component {
 class Filter extends Component {
   render(){
     return(
-      <div style={defaultStyle}>
+      <div style={{...defaultStyle,
+                      position: 'relative',
+                      width: '100%'}}>
 
         <input type="text" onKeyUp={event =>
              this.props.onTextChange(event.target.value)}
-             style= {{position: 'absolute',
+             style= {{position: 'relative',
                       left: '50%',
-                      transform: 'translateX(-50%)'}}/>
+                      transform: 'translateX(-50%)',
+                      borderRadius: '5px',
+                      border: '3px solid black'
+                    }}/>
 
       </div>
     )
@@ -94,9 +105,13 @@ class Playlist extends Component {
   render() {
     let playlist = this.props.playlist
     return(
-      <div style ={{...defaultStyle, width: "35%", minWidth: '200px', display: "inline-block",
-                                     background: '#2f2525e6', padding: '26px',
-                                     margin: 'auto auto 9px auto', border: '4px solid #39393980',
+      <div style ={{...defaultStyle, width: "35%",
+                                     minWidth: '200px',
+                                     display: "inline-block",
+                                     background: '#2f2525e6',
+                                     padding: '26px',
+                                     margin: 'auto auto 9px auto',
+                                     border: '4px solid #39393980',
                                      borderRadius: '21px'
 
                    }}>
@@ -195,16 +210,22 @@ render() {
     <div className="App">
       {this.state.user ?
         <div>
-          <h1 style ={{...defaultStyle, fontSize:'54px' ,margin: '0px auto',
-                                        width: '80%', padding: '40px'}}>
+          <h1 style ={{...defaultStyle, fontSize:'54px',
+                                        margin: '0px auto',
+                                        width: '80%',
+                                        padding: '24px'
+                      }}>
             {this.state.user.name} and their playlists
           </h1>
-          <div style = {{display: 'flex', flexWrap: 'wrap'}}>
+          <div style = {{display: 'flex',
+                         flexWrap: 'wrap'
+                       }}>
+                       <Filter onTextChange={text => {
+                           this.setState({filterString: text})
+                         }}/>
                   <PlaylistCounter playlists = {playlistToRender} />
                 <HoursCounter playlists = {playlistToRender} />
-                  <Filter onTextChange={text => {
-                      this.setState({filterString: text})
-                    }}/>
+
                   {playlistToRender.map(playlist =>
                       <Playlist playlist={playlist}/>
                     )}
@@ -215,7 +236,15 @@ render() {
           ? 'http://localhost:8888/login'
           : 'https://react-playlist-backend.herokuapp.com/login' }
         }
-          style ={{'padding': '20px', 'fontSize': '50px', 'marginTop' : '20px'}}>Sign in with Spotify</button>
+          style ={{padding: '20px',
+                   fontSize: '50px',
+                   margin : '20px auto',
+                   position: 'relative',
+                   borderRadius: '13px',
+                   border: '8px solid black',
+                   transform: 'translateX(-50%)',
+                   left: '50%'
+                 }}>Sign in with Spotify</button>
       }
     </div>
   );
