@@ -105,14 +105,15 @@ class Playlist extends Component {
   render() {
     let playlist = this.props.playlist
     return(
-      <div style ={{...defaultStyle, width: "35%",
-                                     minWidth: '200px',
-                                     display: "inline-block",
-                                     background: '#2f2525e6',
-                                     padding: '26px',
-                                     margin: 'auto auto 9px auto',
-                                     border: '4px solid #39393980',
-                                     borderRadius: '21px'
+      <div style ={{...defaultStyle,
+                       width: "35%",
+                       minWidth: '200px',
+                       display: "inline-block",
+                       background: '#2f2525e6',
+                       padding: '26px',
+                       margin: 'auto auto 9px auto',
+                       border: '4px solid #39393980',
+                       borderRadius: '21px'
 
                    }}>
         <img src={playlist.imageUrl} style={{}}/>
@@ -160,7 +161,8 @@ class App extends Component
         let playlists = playlistData.items
         let trackDataPromises = playlists.map(playlist => {
           let responsePromise = fetch(playlist.tracks.href, {
-            headers: {'Authorization': 'Bearer ' + accessToken}
+            headers: {'Authorization': 'Bearer ' + accessToken},
+
           })
           let trackDataPromise = responsePromise
               .then(response => response.json())
@@ -210,10 +212,11 @@ render() {
     <div className="App">
       {this.state.user ?
         <div>
-          <h1 style ={{...defaultStyle, fontSize:'54px',
-                                        margin: '0px auto',
-                                        width: '80%',
-                                        padding: '24px'
+          <h1 style ={{...defaultStyle,
+                          fontSize:'54px',
+                          margin: '0px auto',
+                          width: '80%',
+                          padding: '24px'
                       }}>
             {this.state.user.name} and their playlists
           </h1>

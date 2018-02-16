@@ -4,7 +4,7 @@ html, body {
 
 body {
   padding: 10%;
-  
+
 }
 
 .App{
@@ -16,6 +16,13 @@ img {
   height: 100%;
   border: 1px solid white;
   border-radius: 5px;
+  transition: 800ms linear;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+    transition: 800ms ease-in-out;
+    box-shadow: 0px 0px 20px 8px rgba(27, 23, 23, .9);
   }
 
   ul {
