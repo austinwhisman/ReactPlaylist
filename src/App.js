@@ -3,7 +3,8 @@ import './App.css';
 import  queryString from 'query-string';
 
 let defaultStyle = {
-  color: '#fff'
+  color: '#fff',
+  'font-family': 'helvetica'
 }
 
 let fakeServerData = {
@@ -48,7 +49,7 @@ let fakeServerData = {
 class PlaylistCounter extends Component {
   render(){
     return (
-      <div style={{width: '40%', display: 'inline-block'}}>
+      <div style={{width: '40%', display: 'inline-block', textAlign :'center'}}>
         <h2 style={defaultStyle}>
           {this.props.playlists.length} Playlist</h2>
       </div>
@@ -65,7 +66,8 @@ class HoursCounter extends Component {
       return sum + eachSong.duration
     }, 0)
     return (
-      <div style={{width: '40%', display: 'inline-block'}}>
+
+      <div style={{width: '40%', display: 'inline-block', textAlign: 'right'}}>
         <h2 style={defaultStyle}>
           {Math.round(totalDuration/60)} Hours</h2>
       </div>
@@ -76,9 +78,12 @@ class Filter extends Component {
   render(){
     return(
       <div style={defaultStyle}>
-        <img/>
+
         <input type="text" onKeyUp={event =>
-             this.props.onTextChange(event.target.value)}/>
+             this.props.onTextChange(event.target.value)}
+             style= {{position: 'absolute',
+                      left: '50%',
+                      transform: 'translateX(-50%)'}}/>
 
       </div>
     )
@@ -89,9 +94,14 @@ class Playlist extends Component {
   render() {
     let playlist = this.props.playlist
     return(
-      <div style ={{...defaultStyle, width: "25%", display: "inline-block"}}>
-        <img src={playlist.imageUrl} style={{height: '60px'}}/>
-        <h3>{playlist.name}</h3>
+      <div style ={{...defaultStyle, width: "35%", minWidth: '200px', display: "inline-block",
+                                     background: '#2f2525e6', padding: '26px',
+                                     margin: 'auto auto 9px auto', border: '4px solid #39393980',
+                                     borderRadius: '21px'
+
+                   }}>
+        <img src={playlist.imageUrl} style={{}}/>
+        <h3>{playlist.name} <br></br>TOP TRACKS</h3>
         <ul>
           {playlist.songs.map(song =>
           <li>{song.name}</li>
@@ -185,10 +195,11 @@ render() {
     <div className="App">
       {this.state.user ?
         <div>
-          <h1 style ={{...defaultStyle, fontsize:'54px'}}>
+          <h1 style ={{...defaultStyle, fontSize:'54px' ,margin: '0px auto',
+                                        width: '80%', padding: '40px'}}>
             {this.state.user.name} and their playlists
           </h1>
-          <div>
+          <div style = {{display: 'flex', flexWrap: 'wrap'}}>
                   <PlaylistCounter playlists = {playlistToRender} />
                 <HoursCounter playlists = {playlistToRender} />
                   <Filter onTextChange={text => {
