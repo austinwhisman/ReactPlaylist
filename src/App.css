@@ -38,7 +38,7 @@ img {
   h3{
     text-align: center;
     text-transform: uppercase;
-    color: #62f962cc;
+    color: #d3ff5ecc;
   }
 
   ul li:before {
@@ -49,4 +49,8 @@ font-weight: bold;
 position: relative;
 left: -9px;
 line-height: 13px;
+}
+
+button:hover {
+  background:#363636;
 }
